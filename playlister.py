@@ -50,7 +50,7 @@ def get_playlist_id(pl):
         if playlist['name'] == pl:
             return playlist['id']
     print "Playlist {} not found".format(pl)
-    return ''
+    sys.exit() # invalid playlist, quit script
 
 def get_playlist_tracks(pl_id):
     try:
@@ -64,7 +64,7 @@ def get_playlist_tracks(pl_id):
         return []
 
 
-def export_youtube_playlist(tracks, output='autoplaylist.txt', shuffle=False):
+def export_youtube_playlist(tracks, output, shuffle):
     if shuffle:
         random.shuffle(tracks)
     print 'Exporting playlist to {}'.format(output)
@@ -76,9 +76,23 @@ def export_youtube_playlist(tracks, output='autoplaylist.txt', shuffle=False):
     print 'Export complete.'
 
 if __name__ == '__main__':
-    playlist = 'Summer \'17'
-    init_sp()
+    if len(sys.argv) < 2:
+        print 'Playlist name required.'
+        sys.exit()
 
+    playlist = sys.argv[1]
+    output = 'autoplaylist.txt'
+    shuffle = False
+
+    if len(sys.argv) >= 3:
+        for arg in sys.argv:
+            if arg[:2] == '-o':
+                output = arg[3:]
+            if arg[:2] == '-s':
+                if arg[3].lower() == T or arg[3].lower() == t:
+                    shuffle = True
+
+    init_sp()
     pl_id = get_playlist_id(playlist)
     tracks = get_playlist_tracks(pl_id)
-    export_youtube_playlist(tracks, shuffle=True)
+    export_youtube_playlist(tracks, output, shuffle=shuffle)
