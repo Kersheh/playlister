@@ -1,2 +1,4 @@
 .cache-*
 config.json
+*.pyc
+autoplaylist.txt
