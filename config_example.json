@@ -1,0 +1,7 @@
+{ "config": {
+    "username": "USERNAME_HERE",
+    "id": "CLIENT_ID_HERE",
+    "secret": "CLIENT_SECRET_HERE",
+    "redirect_uri": "https://example.com/callback/"
+  }
+}
