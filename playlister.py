@@ -1,4 +1,4 @@
-import sys, json, random
+import sys, json, random, os
 import spotipy
 import spotipy.util as util
 import youtubeSearch
@@ -7,10 +7,12 @@ import youtubeSearch
 sp = {}
 username = ''
 
+path = os.path.dirname(os.path.abspath(__file__))
+
 # Script setup
 
 def config():
-    with open('config.json') as data:
+    with open(path + '/config.json') as data:
         config = json.load(data)
     return config['config']
 
