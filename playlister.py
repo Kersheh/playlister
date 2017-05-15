@@ -65,7 +65,6 @@ def get_playlist_tracks(pl_id):
         print 'Invalid playlist id'
         return []
 
-
 def export_youtube_playlist(tracks, output, shuffle):
     if shuffle:
         random.shuffle(tracks)
@@ -91,7 +90,7 @@ if __name__ == '__main__':
             if arg[:2] == '-o':
                 output = arg[3:]
             if arg[:2] == '-s':
-                if arg[3].lower() == 'T' or arg[3].lower() == 't'   :
+                if arg[3].lower() == 't':
                     shuffle = True
 
     init_sp()
