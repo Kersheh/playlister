@@ -1,4 +1,4 @@
-import sys, json
+import sys, json, random
 import spotipy
 import spotipy.util as util
 import youtubeSearch
@@ -63,7 +63,10 @@ def get_playlist_tracks(pl_id):
         print 'Invalid playlist id'
         return []
 
-def export_youtube_playlist(tracks, output='autoplaylist.txt'):
+
+def export_youtube_playlist(tracks, output='autoplaylist.txt', shuffle=False):
+    if shuffle:
+        random.shuffle(tracks)
     print 'Exporting playlist to {}'.format(output)
     with open(output, 'w') as file_out:
         for track in tracks:
@@ -78,4 +81,4 @@ if __name__ == '__main__':
 
     pl_id = get_playlist_id(playlist)
     tracks = get_playlist_tracks(pl_id)
-    export_youtube_playlist(tracks)
+    export_youtube_playlist(tracks, shuffle=True)
