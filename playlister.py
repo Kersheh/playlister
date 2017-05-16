@@ -68,7 +68,7 @@ def get_playlist_tracks(pl_id):
 def export_youtube_playlist(tracks, output, shuffle):
     if shuffle:
         random.shuffle(tracks)
-    print 'Exporting playlist to {}'.format(output)
+    print 'Exporting playlist to {} with shuffle={}'.format(output, shuffle)
     with open(output, 'w') as file_out:
         for track in tracks:
             youtube_url = youtubeSearch.query_video_url(track)
@@ -77,8 +77,11 @@ def export_youtube_playlist(tracks, output, shuffle):
     print 'Export complete.'
 
 if __name__ == '__main__':
+    init_sp()
+
     if len(sys.argv) < 2:
-        print 'Playlist name required.'
+        print 'Playlist name required. Printing list of available playlists.'
+        print_playlist_names()
         sys.exit()
 
     playlist = sys.argv[1]
@@ -93,7 +96,6 @@ if __name__ == '__main__':
                 if arg[3].lower() == 't':
                     shuffle = True
 
-    init_sp()
     pl_id = get_playlist_id(playlist)
     tracks = get_playlist_tracks(pl_id)
     export_youtube_playlist(tracks, output, shuffle=shuffle)

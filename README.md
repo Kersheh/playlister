@@ -15,4 +15,4 @@ run
 ---
 - `playlister 'Playlist Name' -o=output.txt -s=true`
 
-Parameters -o (file output) and -s (shuffle) are optional. Default exports to cwd as autoplaylist.txt without shuffle.
+Without a given playlist name, the playlister will print out a list of available playlists. Parameters -o (file output) and -s (shuffle) are optional. Default exports to cwd as autoplaylist.txt without shuffle.
